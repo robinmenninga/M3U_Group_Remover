@@ -50,9 +50,12 @@ namespace M3U_Group_Remover
 
         public static string GetGroupName(string line)
         {
-            string firstsubstring = line[(line.IndexOf("group-title=") + 13)..];
-            return firstsubstring.Substring(0, firstsubstring.IndexOf("\""));
-            //line.Substring()
+            if (line.Contains("group-title"))
+            {
+                string firstsubstring = line[(line.IndexOf("group-title=") + 13)..];
+                return firstsubstring.Substring(0, firstsubstring.IndexOf("\""));
+            }
+            else return "";
         }
 
         public static void RemoveGroup(List<string> groupNames)
