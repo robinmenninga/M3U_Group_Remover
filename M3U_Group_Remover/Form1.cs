@@ -29,11 +29,15 @@ namespace M3U_Group_Remover
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Label_SelectedFileActual.Text = openFileDialog.FileName;
-
                 M3ULogic.Init(openFileDialog.FileName);
+                if (M3ULogic.Groups.Count == 0)
+                {
+                    MessageBox.Show("No groups found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 ListView_Groups.Items.Clear();
                 M3ULogic.Groups.ForEach(group => ListView_Groups.Items.Add(group));
+                Label_SelectedFileActual.Text = openFileDialog.FileName;
             }
         }
 
@@ -52,7 +56,6 @@ namespace M3U_Group_Remover
 
         private void Button_SaveExit_Click(object sender, EventArgs e)
         {
-            if (ListView_Groups.Items.Count == 0) return;
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Title = "Save M3U file",
