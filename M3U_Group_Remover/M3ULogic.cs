@@ -13,10 +13,12 @@ namespace M3U_Group_Remover
 
         public static List<string> Groups
         {
-            get
-            {
-                return groups;
-            }
+            get { return groups; }
+        }
+
+        public static string FileName
+        {
+            get { return fileName; }
         }
 
         public static void Save(string saveName)

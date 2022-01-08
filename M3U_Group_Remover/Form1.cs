@@ -56,6 +56,8 @@ namespace M3U_Group_Remover
 
         private void Button_SaveExit_Click(object sender, EventArgs e)
         {
+            if (M3ULogic.FileName == null) return;
+
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Title = "Save M3U file",
